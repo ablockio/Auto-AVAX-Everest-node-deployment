@@ -360,9 +360,12 @@ module.exports.unsignedNodeTxEndTime100Year = async function(node, pchain) {
           "jsonrpc": "2.0",
           "method": "platform.addDefaultSubnetValidator",
           "params": {
-            "id": node,
+            "username": json.username,
+            "password": json.password,
+            "nodeID": node,
             "payerNonce": 3,
-            "destination": pchain,
+            "rewardAddress": pchain,
+
             "startTime": Number((new Date(new Date().getTime() + 15 * 60000).getTime() / 1000).toFixed(0)),
             "endTime": Number((new Date(endTime).getTime() / 1000).toFixed(0)),
             "stakeAmount": 5000000,
