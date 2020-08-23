@@ -149,8 +149,8 @@ async function checkStatus(exportVal) {
     console.log("Waiting 5 sec");
     await new Promise(resolve => setTimeout(resolve, 5000));
     // await new Promise(resolve => setTimeout(resolve, 5000));
-    console.log('##  Issuing transation to P-Chain : ', tx.body.result.tx)
-    let issue = await helper.issueTxPChain(tx.body.result.tx)
+    console.log('##  Issuing transation to P-Chain : ', tx.body.result.txID)
+    let issue = await helper.issueTxPChain(tx.body.result.txID)
 
     checkBalancePchain()
 
