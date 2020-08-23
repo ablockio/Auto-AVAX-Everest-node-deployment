@@ -288,7 +288,8 @@ module.exports.getAccountPChainBalance = async function(pchain) {
           "id": 1
         },
 
-        headers: headersOpt
+        headers: headersOpt,
+        json: true,
       },
       (error, response, body) => {
         console.log(error, response, body)
