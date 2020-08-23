@@ -179,7 +179,7 @@ module.exports.exportAVAXChainToPChain = async function(pchain) {
             "username": json.username,
             "password": json.password,
             "to": pchain,
-            "amount": 10000
+            "amount": 7000000
           }
         },
 
