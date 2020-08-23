@@ -79,7 +79,7 @@ module.exports.createAddressPChain = async function() {
         url: 'http://127.0.0.1:9650/ext/P',
         body: {
           "jsonrpc": "2.0",
-          "method": "platform.createAccount",
+          "method": "platform.createAddress",
           "params": {
             "username": json.username,
             "password": json.password
