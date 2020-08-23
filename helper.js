@@ -174,7 +174,7 @@ module.exports.exportAVAXChainToPChain = async function(pchain) {
         body: {
           "jsonrpc": "2.0",
           "id": 1,
-          "method": "avm.exportAVA",
+          "method": "avm.exportAVAX",
           "params": {
             "username": json.username,
             "password": json.password,
