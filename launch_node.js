@@ -98,18 +98,18 @@ async function claimFaucet() {
   console.log('## Provisionning nAVA tokens ...')
   console.log('Connect to https://faucet.ava.network/ and claim tokens');
   console.log('Type your X-Chain wallet ', d.xWalletResponse.result.address)
-  console.log('When you have successfully received your tokens, press any key to continue');
+  console.log('##########################');
 
   // await keypress()
 
   var balance = await helper.checkWalletBalanceXChain(d.xWalletResponse.result.address)
 
   if (balance.body.result.balance > 10000) {
-    console.log('Your balance has ' + balance.body.result.balance + ' nAVA');
+    console.log('Your balance has ' + balance.body.result.balance + ' nAVAX');
     sendAVAtoPChain()
   } else {
 
-    console.log('You do not have enough nAVA. Checking again in 30 sec automaticly');
+    console.log('You do not have enough nAVAX. Checking again in 30 sec automaticly');
     await new Promise(resolve => setTimeout(resolve, 30000));
     claimFaucet()
 

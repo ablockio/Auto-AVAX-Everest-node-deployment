@@ -207,7 +207,7 @@ module.exports.acceptTransferPChain = async function(pchain) {
         url: 'http://127.0.0.1:9650/ext/bc/P',
         body: {
           "jsonrpc": "2.0",
-          "method": "platform.importAVA",
+          "method": "platform.importAVAX",
           "params": {
             "username": json.username,
             "password": json.password,
