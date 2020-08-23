@@ -309,7 +309,7 @@ module.exports.validation = async function(pchain) {
 
     request({
         method: 'post',
-        url: 'http://127.0.0.1:9650/ext/admin',
+        url: 'http://127.0.0.1:9650/ext/info',
         body: {
           "jsonrpc": "2.0",
           "method": "admin.getNodeID",
@@ -365,7 +365,8 @@ module.exports.unsignedNodeTxEndTime100Year = async function(node, pchain) {
             "destination": pchain,
             "startTime": Number((new Date(new Date().getTime() + 15 * 60000).getTime() / 1000).toFixed(0)),
             "endTime": Number((new Date(endTime).getTime() / 1000).toFixed(0)),
-            "stakeAmount": 10000
+            "stakeAmount": 5000000,
+            "delegationFeeRate": 5
           },
           "id": 1
         },
@@ -414,8 +415,9 @@ module.exports.unsignedNodeTx = async function(node, pchain) {
             "payerNonce": 2,
             "destination": pchain,
             "startTime": Number((new Date(new Date().getTime() + 15 * 60000).getTime() / 1000).toFixed(0)),
-            "endTime": 1592265599,
-            "stakeAmount": 10000
+            "endTime": 1629032852,
+            "stakeAmount": 5000000,
+            "delegationFeeRate": 0
           },
           "id": 1
         },
