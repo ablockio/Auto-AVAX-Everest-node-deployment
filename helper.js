@@ -269,13 +269,6 @@ module.exports.getAccountPChainBalance = async function(pchain) {
       "content-type": "application/json",
     };
 
-    console.log('query', {
-      "jsonrpc": "2.0",
-      "method": "platform.getBalance",
-      "params": {
-        "address": pchain
-      }
-    })
     request({
         method: 'post',
         url: 'http://127.0.0.1:9650/ext/bc/P',
@@ -292,7 +285,7 @@ module.exports.getAccountPChainBalance = async function(pchain) {
         json: true,
       },
       (error, response, body) => {
-        console.log(error, response, body)
+
         resolve(response)
       })
   })
@@ -503,7 +496,7 @@ module.exports.issueTxPChain = async function(tx) {
         json: true,
       },
       (error, response, body) => {
-        console.log("issue tx", error, response, body)
+
         resolve(response)
       })
   })

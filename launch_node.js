@@ -95,7 +95,7 @@ async function nodeIsLaunchedProcess() {
 }
 
 async function claimFaucet() {
-  console.log('## Provisionning nAVA tokens ...')
+  console.log('## Provisionning nAVAX tokens ...')
   console.log('Connect to https://faucet.ava.network/ and claim tokens');
   console.log('Type your X-Chain wallet ', d.xWalletResponse.result.address)
   console.log('##########################');
@@ -183,12 +183,12 @@ async function validation() {
   d.node = node.body;
   console.log('Node Id:', d.node.result.nodeID)
   console.log('##  Creating unsigned transaction...')
-
-  let unsigned = await helper.unsignedNodeTx(d.node.result.nodeID, d.pWalletResponse.result.address)
-  console.log('##  Signing unsigned transaction...')
-  let signed = await helper.signTxPChain(unsigned.body.result.unsignedTx, d.pWalletResponse.result.address)
-  console.log('##  Issuing Transaction to P-Chain...')
-  let issuePchain = await helper.issueTxPChainAdmin(signed.body.result.tx)
+  // 
+  // let unsigned = await helper.unsignedNodeTx(d.node.result.nodeID, d.pWalletResponse.result.address)
+  // console.log('##  Signing unsigned transaction...')
+  // let signed = await helper.signTxPChain(unsigned.body.result.unsignedTx, d.pWalletResponse.result.address)
+  // console.log('##  Issuing Transaction to P-Chain...')
+  // let issuePchain = await helper.issueTxPChainAdmin(signed.body.result.tx)
 
 
   console.log('    /\\ \\    / /\\    \\ \\ / / |  ____\\ \\    / /  ____|  __ \\|  ____|/ ____|__   __|')
