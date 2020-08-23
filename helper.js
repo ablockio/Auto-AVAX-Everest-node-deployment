@@ -212,7 +212,7 @@ module.exports.acceptTransferPChain = async function(pchain) {
             "username": json.username,
             "password": json.password,
             "to": pchain,
-            "source": "X"
+            "sourceChain": "X"
           },
           "id": 1
         },
