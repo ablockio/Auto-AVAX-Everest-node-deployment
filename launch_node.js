@@ -146,7 +146,8 @@ async function checkStatus(exportVal) {
 
 
     var tx = await helper.acceptTransferPChain(d.pWalletResponse.result.address)
-
+    console.log("Waiting 5 sec");
+    await new Promise(resolve => setTimeout(resolve, 5000));
     // await new Promise(resolve => setTimeout(resolve, 5000));
     console.log('##  Issuing transation to P-Chain : ', tx.body.result.tx)
     let issue = await helper.issueTxPChain(tx.body.result.tx)
