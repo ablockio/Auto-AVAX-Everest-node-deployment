@@ -90,7 +90,7 @@ module.exports.createAddressPChain = async function() {
         json: true,
       },
       (error, response, body) => {
-
+        console.log(error, response, body)
         resolve(response)
       })
   })
