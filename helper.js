@@ -90,7 +90,7 @@ module.exports.createAddressPChain = async function() {
         json: true,
       },
       (error, response, body) => {
-        console.log(error, response, body)
+
         resolve(response)
       })
   })
@@ -122,7 +122,7 @@ module.exports.checkWalletBalanceXChain = async function(wallet) {
         json: true,
       },
       (error, response, body) => {
-
+        console.log(error, response, body)
         resolve(response)
       })
   })
