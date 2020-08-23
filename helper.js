@@ -221,7 +221,7 @@ module.exports.acceptTransferPChain = async function(pchain) {
         json: true,
       },
       (error, response, body) => {
-        console.log(error, response, body)
+        // console.log(error, response, body)
         resolve(response)
       })
   })
@@ -266,7 +266,7 @@ module.exports.getAccountPChainBalance = async function(pchain) {
 
   return new Promise((resolve, reject) => {
     var headersOpt = {
-      // "content-type": "application/json",
+      "content-type": "application/json",
     };
 
 
@@ -286,7 +286,7 @@ module.exports.getAccountPChainBalance = async function(pchain) {
         json: true,
       },
       (error, response, body) => {
-
+        console.log(error, response, body)
         resolve(response)
       })
   })
@@ -329,20 +329,20 @@ module.exports.unsignedNodeTxEndTime100Year = async function(node, pchain) {
       // "content-type": "application/json",
     };
 
-    console.log('UNSIGNED QUERY');
-    console.log({
-      "jsonrpc": "2.0",
-      "method": "platform.addDefaultSubnetValidator",
-      "params": {
-        "id": node,
-        "payerNonce": 2,
-        "destination": pchain,
-        "startTime": Number((new Date(new Date().getTime() + 15 * 60000).getTime() / 1000).toFixed(0)),
-        "endTime": 1592265599,
-        "stakeAmount": 10000
-      },
-      "id": 1
-    })
+
+    // console.log({
+    //   "jsonrpc": "2.0",
+    //   "method": "platform.addDefaultSubnetValidator",
+    //   "params": {
+    //     "id": node,
+    //     "payerNonce": 2,
+    //     "destination": pchain,
+    //     "startTime": Number((new Date(new Date().getTime() + 15 * 60000).getTime() / 1000).toFixed(0)),
+    //     "endTime": 1592265599,
+    //     "stakeAmount": 10000
+    //   },
+    //   "id": 1
+    // })
 
     var endTime = new Date();
     endTime.setFullYear(endTime.getFullYear() + 100);
@@ -382,20 +382,20 @@ module.exports.unsignedNodeTx = async function(node, pchain) {
       // "content-type": "application/json",
     };
 
-    console.log('UNSIGNED QUERY');
-    console.log({
-      "jsonrpc": "2.0",
-      "method": "platform.addDefaultSubnetValidator",
-      "params": {
-        "id": node,
-        "payerNonce": 2,
-        "destination": pchain,
-        "startTime": Number((new Date(new Date().getTime() + 15 * 60000).getTime() / 1000).toFixed(0)),
-        "endTime": 1592265599,
-        "stakeAmount": 10000
-      },
-      "id": 1
-    })
+    // console.log('UNSIGNED QUERY');
+    // console.log({
+    //   "jsonrpc": "2.0",
+    //   "method": "platform.addDefaultSubnetValidator",
+    //   "params": {
+    //     "id": node,
+    //     "payerNonce": 2,
+    //     "destination": pchain,
+    //     "startTime": Number((new Date(new Date().getTime() + 15 * 60000).getTime() / 1000).toFixed(0)),
+    //     "endTime": 1592265599,
+    //     "stakeAmount": 10000
+    //   },
+    //   "id": 1
+    // })
 
     request({
         method: 'post',
