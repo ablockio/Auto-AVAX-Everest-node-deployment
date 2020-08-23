@@ -79,7 +79,7 @@ module.exports.createAddressPChain = async function() {
         url: 'http://127.0.0.1:9650/ext/P',
         body: {
           "jsonrpc": "2.0",
-          "method": "platform.createAccount",
+          "method": "platform.createAddress",
           "params": {
             "username": json.username,
             "password": json.password
@@ -115,7 +115,7 @@ module.exports.checkWalletBalanceXChain = async function(wallet) {
           "method": "avm.getBalance",
           "params": {
             "address": wallet,
-            "assetID": "AVA"
+            "assetID": "AVAX"
           }
         },
         headers: headersOpt,
@@ -144,7 +144,7 @@ module.exports.sendAVAtoXChain = async function(wallet) {
         body: {
           "username": json.username,
           "password": json.password,
-          "assetID": "AVA",
+          "assetID": "AVAX",
           "amount": 1000,
           "to": wallet
         },
@@ -174,12 +174,12 @@ module.exports.exportAVAXChainToPChain = async function(pchain) {
         body: {
           "jsonrpc": "2.0",
           "id": 1,
-          "method": "avm.exportAVA",
+          "method": "avm.exportAVAX",
           "params": {
             "username": json.username,
             "password": json.password,
             "to": pchain,
-            "amount": 10000
+            "amount": 7000000
           }
         },
 
@@ -207,12 +207,12 @@ module.exports.acceptTransferPChain = async function(pchain) {
         url: 'http://127.0.0.1:9650/ext/bc/P',
         body: {
           "jsonrpc": "2.0",
-          "method": "platform.importAVA",
+          "method": "platform.importAVAX",
           "params": {
             "username": json.username,
             "password": json.password,
             "to": pchain,
-            "payerNonce": 1
+            "sourceChain": "X"
           },
           "id": 1
         },
@@ -221,7 +221,7 @@ module.exports.acceptTransferPChain = async function(pchain) {
         json: true,
       },
       (error, response, body) => {
-
+        // console.log(error, response, body)
         resolve(response)
       })
   })
@@ -262,20 +262,19 @@ module.exports.getTxStatusP = async function(pchain) {
 
 }
 
-module.exports.getAccountPChain = async function(pchain) {
+module.exports.getAccountPChainBalance = async function(pchain) {
 
   return new Promise((resolve, reject) => {
     var headersOpt = {
-      // "content-type": "application/json",
+      "content-type": "application/json",
     };
-
 
     request({
         method: 'post',
         url: 'http://127.0.0.1:9650/ext/bc/P',
         body: {
           "jsonrpc": "2.0",
-          "method": "platform.getAccount",
+          "method": "platform.getBalance",
           "params": {
             "address": pchain
           },
@@ -303,10 +302,10 @@ module.exports.validation = async function(pchain) {
 
     request({
         method: 'post',
-        url: 'http://127.0.0.1:9650/ext/admin',
+        url: 'http://127.0.0.1:9650/ext/info',
         body: {
           "jsonrpc": "2.0",
-          "method": "admin.getNodeID",
+          "method": "info.getNodeID",
           "params": {},
           "id": 1
         },
@@ -329,20 +328,20 @@ module.exports.unsignedNodeTxEndTime100Year = async function(node, pchain) {
       // "content-type": "application/json",
     };
 
-    console.log('UNSIGNED QUERY');
-    console.log({
-      "jsonrpc": "2.0",
-      "method": "platform.addDefaultSubnetValidator",
-      "params": {
-        "id": node,
-        "payerNonce": 2,
-        "destination": pchain,
-        "startTime": Number((new Date(new Date().getTime() + 15 * 60000).getTime() / 1000).toFixed(0)),
-        "endTime": 1592265599,
-        "stakeAmount": 10000
-      },
-      "id": 1
-    })
+
+    // console.log({
+    //   "jsonrpc": "2.0",
+    //   "method": "platform.addDefaultSubnetValidator",
+    //   "params": {
+    //     "id": node,
+    //     "payerNonce": 2,
+    //     "destination": pchain,
+    //     "startTime": Number((new Date(new Date().getTime() + 15 * 60000).getTime() / 1000).toFixed(0)),
+    //     "endTime": 1592265599,
+    //     "stakeAmount": 10000
+    //   },
+    //   "id": 1
+    // })
 
     var endTime = new Date();
     endTime.setFullYear(endTime.getFullYear() + 100);
@@ -354,12 +353,16 @@ module.exports.unsignedNodeTxEndTime100Year = async function(node, pchain) {
           "jsonrpc": "2.0",
           "method": "platform.addDefaultSubnetValidator",
           "params": {
-            "id": node,
+            "username": json.username,
+            "password": json.password,
+            "nodeID": node,
             "payerNonce": 3,
-            "destination": pchain,
+            "rewardAddress": pchain,
+
             "startTime": Number((new Date(new Date().getTime() + 15 * 60000).getTime() / 1000).toFixed(0)),
             "endTime": Number((new Date(endTime).getTime() / 1000).toFixed(0)),
-            "stakeAmount": 10000
+            "stakeAmount": 5000000,
+            "delegationFeeRate": 5
           },
           "id": 1
         },
@@ -382,20 +385,20 @@ module.exports.unsignedNodeTx = async function(node, pchain) {
       // "content-type": "application/json",
     };
 
-    console.log('UNSIGNED QUERY');
-    console.log({
-      "jsonrpc": "2.0",
-      "method": "platform.addDefaultSubnetValidator",
-      "params": {
-        "id": node,
-        "payerNonce": 2,
-        "destination": pchain,
-        "startTime": Number((new Date(new Date().getTime() + 15 * 60000).getTime() / 1000).toFixed(0)),
-        "endTime": 1592265599,
-        "stakeAmount": 10000
-      },
-      "id": 1
-    })
+    // console.log('UNSIGNED QUERY');
+    // console.log({
+    //   "jsonrpc": "2.0",
+    //   "method": "platform.addDefaultSubnetValidator",
+    //   "params": {
+    //     "id": node,
+    //     "payerNonce": 2,
+    //     "destination": pchain,
+    //     "startTime": Number((new Date(new Date().getTime() + 15 * 60000).getTime() / 1000).toFixed(0)),
+    //     "endTime": 1592265599,
+    //     "stakeAmount": 10000
+    //   },
+    //   "id": 1
+    // })
 
     request({
         method: 'post',
@@ -404,12 +407,18 @@ module.exports.unsignedNodeTx = async function(node, pchain) {
           "jsonrpc": "2.0",
           "method": "platform.addDefaultSubnetValidator",
           "params": {
-            "id": node,
-            "payerNonce": 2,
-            "destination": pchain,
+
+            "username": json.username,
+            "password": json.password,
+            "nodeID": node,
+            "payerNonce": 3,
+            "rewardAddress": pchain,
+
             "startTime": Number((new Date(new Date().getTime() + 15 * 60000).getTime() / 1000).toFixed(0)),
-            "endTime": 1592265599,
-            "stakeAmount": 10000
+            "endTime": 1629032852,
+            "stakeAmount": 5000000,
+            "delegationFeeRate": 5
+
           },
           "id": 1
         },

@@ -20,14 +20,12 @@ var d = {
 }
 
 
-console.log("  /$$$$$$  /$$    /$$  /$$$$$$                      /$$$$$$$  /$$$$$$$$ /$$   /$$  /$$$$$$  /$$       /$$$$$$");
-console.log(" /$$__  $$| $$   | $$ /$$__  $$                    | $$__  $$| $$_____/| $$$ | $$ /$$__  $$| $$      |_  $$_/");
-console.log("| $$  \\ $$| $$   | $$| $$  \\ $$                    | $$  \\ $$| $$      | $$$$| $$| $$  \\ $$| $$        | $$  ");
-console.log("| $$$$$$$$|  $$ / $$/| $$$$$$$$       /$$$$$$      | $$  | $$| $$$$$   | $$ $$ $$| $$$$$$$$| $$        | $$  ");
-console.log("| $$__  $$ \\  $$ $$/ | $$__  $$      |______/      | $$  | $$| $$__/   | $$  $$$$| $$__  $$| $$        | $$  ");
-console.log("| $$  | $$  \\  $$$/  | $$  | $$                    | $$  | $$| $$      | $$\\  $$$| $$  | $$| $$        | $$  ");
-console.log("| $$  | $$   \\  $/   | $$  | $$                    | $$$$$$$/| $$$$$$$$| $$ \\  $$| $$  | $$| $$$$$$$$ /$$$$$$");
-console.log("|__/  |__/    \\_/    |__/  |__/                    |_______/ |________/|__script powered by https://ablock.io");
+console.log('    /\\ \\    / /\\    \\ \\ / / |  ____\\ \\    / /  ____|  __ \\|  ____|/ ____|__   __|')
+console.log('   /  \\ \\  / /  \\    \\ V /  | |__   \\ \\  / /| |__  | |__) | |__  | (___    | |   ')
+console.log('  / /\\ \\ \\/ / /\\ \\    > <   |  __|   \\ \\/ / |  __| |  _  /|  __|  \\___ \\   | |   ')
+console.log(' / ____ \\  / ____ \\  / . \\  | |____   \\  /  | |____| | \\ \\| |____ ____) |  | |   ')
+console.log('/_/    \\_\\/_/    \\_\\/_/ \\_\\ |______|   \\/   |______|_|  \\_\\0.6.2_|_____/   |_|   ')
+console.log('If you want to help us, contact us on contact@ablock.io')
 
 
 
@@ -97,21 +95,21 @@ async function nodeIsLaunchedProcess() {
 }
 
 async function claimFaucet() {
-  console.log('## Provisionning nAVA tokens ...')
+  console.log('## Provisionning nAVAX tokens ...')
   console.log('Connect to https://faucet.ava.network/ and claim tokens');
   console.log('Type your X-Chain wallet ', d.xWalletResponse.result.address)
-  console.log('When you have successfully received your tokens, press any key to continue');
+  console.log('##########################');
 
   // await keypress()
 
   var balance = await helper.checkWalletBalanceXChain(d.xWalletResponse.result.address)
 
   if (balance.body.result.balance > 10000) {
-    console.log('Your balance has ' + balance.body.result.balance + ' nAVA');
+    console.log('Your balance has ' + balance.body.result.balance + ' nAVAX');
     sendAVAtoPChain()
   } else {
 
-    console.log('You do not have enough nAVA. Checking again in 30 sec automaticly');
+    console.log('You do not have enough nAVAX. Checking again in 30 sec automaticly');
     await new Promise(resolve => setTimeout(resolve, 30000));
     claimFaucet()
 
@@ -148,10 +146,11 @@ async function checkStatus(exportVal) {
 
 
     var tx = await helper.acceptTransferPChain(d.pWalletResponse.result.address)
-
+    console.log("Waiting 5 sec");
+    await new Promise(resolve => setTimeout(resolve, 5000));
     // await new Promise(resolve => setTimeout(resolve, 5000));
-    console.log('##  Issuing transation to P-Chain : ', tx.body.result.tx)
-    let issue = await helper.issueTxPChain(tx.body.result.tx)
+    console.log('##  Issuing transation to P-Chain : ', tx.body.result.txID)
+    let issue = await helper.issueTxPChain(tx.body.result.txID)
 
     checkBalancePchain()
 
@@ -161,7 +160,7 @@ async function checkStatus(exportVal) {
 
 async function checkBalancePchain() {
 
-  let balancePChain = await helper.getAccountPChain(d.pWalletResponse.result.address)
+  let balancePChain = await helper.getAccountPChainBalance(d.pWalletResponse.result.address)
 
 
   if (Number(balancePChain.body.result.balance) === 0) {
@@ -169,6 +168,7 @@ async function checkBalancePchain() {
     console.log('Balance is still 0, waiting 5 sec')
     await new Promise(resolve => setTimeout(resolve, 5000));
     checkBalancePchain()
+
   } else {
     console.log("Your balance on P-Chain is : ", balancePChain.body)
     validation()
@@ -183,23 +183,20 @@ async function validation() {
   d.node = node.body;
   console.log('Node Id:', d.node.result.nodeID)
   console.log('##  Creating unsigned transaction...')
+  // 
+  // let unsigned = await helper.unsignedNodeTx(d.node.result.nodeID, d.pWalletResponse.result.address)
+  // console.log('##  Signing unsigned transaction...')
+  // let signed = await helper.signTxPChain(unsigned.body.result.unsignedTx, d.pWalletResponse.result.address)
+  // console.log('##  Issuing Transaction to P-Chain...')
+  // let issuePchain = await helper.issueTxPChainAdmin(signed.body.result.tx)
 
-  let unsigned = await helper.unsignedNodeTx(d.node.result.nodeID, d.pWalletResponse.result.address)
-  console.log('##  Signing unsigned transaction...')
-  let signed = await helper.signTxPChain(unsigned.body.result.unsignedTx, d.pWalletResponse.result.address)
-  console.log('##  Issuing Transaction to P-Chain...')
-  let issuePchain = await helper.issueTxPChainAdmin(signed.body.result.tx)
 
-
-  console.log("  /$$$$$$  /$$    /$$  /$$$$$$                      /$$$$$$$  /$$$$$$$$ /$$   /$$  /$$$$$$  /$$       /$$$$$$");
-  console.log(" /$$__  $$| $$   | $$ /$$__  $$                    | $$__  $$| $$_____/| $$$ | $$ /$$__  $$| $$      |_  $$_/");
-  console.log("| $$  \\ $$| $$   | $$| $$  \\ $$                    | $$  \\ $$| $$      | $$$$| $$| $$  \\ $$| $$        | $$  ");
-  console.log("| $$$$$$$$|  $$ / $$/| $$$$$$$$       /$$$$$$      | $$  | $$| $$$$$   | $$ $$ $$| $$$$$$$$| $$        | $$  ");
-  console.log("| $$__  $$ \\  $$ $$/ | $$__  $$      |______/      | $$  | $$| $$__/   | $$  $$$$| $$__  $$| $$        | $$  ");
-  console.log("| $$  | $$  \\  $$$/  | $$  | $$                    | $$  | $$| $$      | $$\\  $$$| $$  | $$| $$        | $$  ");
-  console.log("| $$  | $$   \\  $/   | $$  | $$                    | $$$$$$$/| $$$$$$$$| $$ \\  $$| $$  | $$| $$$$$$$$ /$$$$$$");
-  console.log("|__/  |__/    \\_/    |__/  |__/                    |_______/ |________/|__script powered by https://ablock.io");
-
+  console.log('    /\\ \\    / /\\    \\ \\ / / |  ____\\ \\    / /  ____|  __ \\|  ____|/ ____|__   __|')
+  console.log('   /  \\ \\  / /  \\    \\ V /  | |__   \\ \\  / /| |__  | |__) | |__  | (___    | |   ')
+  console.log('  / /\\ \\ \\/ / /\\ \\    > <   |  __|   \\ \\/ / |  __| |  _  /|  __|  \\___ \\   | |   ')
+  console.log(' / ____ \\  / ____ \\  / . \\  | |____   \\  /  | |____| | \\ \\| |____ ____) |  | |   ')
+  console.log('/_/    \\_\\/_/    \\_\\/_/ \\_\\ |______|   \\/   |______|_|  \\_\\0.6.2_|_____/   |_|   ')
+  console.log('If you want to help us, contact us on contact@ablock.io')
   console.log("#############################################################################################################");
 
 
