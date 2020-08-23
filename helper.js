@@ -493,7 +493,7 @@ module.exports.issueTxPChain = async function(tx) {
         json: true,
       },
       (error, response, body) => {
-
+        console.log("issue tx", error, response, body)
         resolve(response)
       })
   })
