@@ -414,13 +414,18 @@ module.exports.unsignedNodeTx = async function(node, pchain) {
           "jsonrpc": "2.0",
           "method": "platform.addDefaultSubnetValidator",
           "params": {
-            "id": node,
-            "payerNonce": 2,
-            "destination": pchain,
+
+            "username": json.username,
+            "password": json.password,
+            "nodeID": node,
+            "payerNonce": 3,
+            "rewardAddress": pchain,
+
             "startTime": Number((new Date(new Date().getTime() + 15 * 60000).getTime() / 1000).toFixed(0)),
             "endTime": 1629032852,
             "stakeAmount": 5000000,
-            "delegationFeeRate": 0
+            "delegationFeeRate": 5
+
           },
           "id": 1
         },
