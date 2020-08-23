@@ -212,7 +212,7 @@ module.exports.acceptTransferPChain = async function(pchain) {
             "username": json.username,
             "password": json.password,
             "to": pchain,
-            "payerNonce": 1
+            "source": "X"
           },
           "id": 1
         },
@@ -221,7 +221,7 @@ module.exports.acceptTransferPChain = async function(pchain) {
         json: true,
       },
       (error, response, body) => {
-
+        console.log(error, response, body)
         resolve(response)
       })
   })
