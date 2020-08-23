@@ -312,7 +312,7 @@ module.exports.validation = async function(pchain) {
         url: 'http://127.0.0.1:9650/ext/info',
         body: {
           "jsonrpc": "2.0",
-          "method": "admin.getNodeID",
+          "method": "info.getNodeID",
           "params": {},
           "id": 1
         },
