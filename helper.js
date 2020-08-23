@@ -262,7 +262,7 @@ module.exports.getTxStatusP = async function(pchain) {
 
 }
 
-module.exports.getAccountPChain = async function(pchain) {
+module.exports.getAccountPChainBalance = async function(pchain) {
 
   return new Promise((resolve, reject) => {
     var headersOpt = {
@@ -275,7 +275,7 @@ module.exports.getAccountPChain = async function(pchain) {
         url: 'http://127.0.0.1:9650/ext/bc/P',
         body: {
           "jsonrpc": "2.0",
-          "method": "platform.getAccount",
+          "method": "platform.getBalance",
           "params": {
             "address": pchain
           },

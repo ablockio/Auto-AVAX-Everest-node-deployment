@@ -160,7 +160,7 @@ async function checkStatus(exportVal) {
 
 async function checkBalancePchain() {
 
-  let balancePChain = await helper.getAccountPChain(d.pWalletResponse.result.address)
+  let balancePChain = await helper.getAccountPChainBalance(d.pWalletResponse.result.address)
 
 
   if (Number(balancePChain.body.result.balance) === 0) {
