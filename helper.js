@@ -115,7 +115,7 @@ module.exports.checkWalletBalanceXChain = async function(wallet) {
           "method": "avm.getBalance",
           "params": {
             "address": wallet,
-            "assetID": "AVA"
+            "assetID": "AVAX"
           }
         },
         headers: headersOpt,
@@ -144,7 +144,7 @@ module.exports.sendAVAtoXChain = async function(wallet) {
         body: {
           "username": json.username,
           "password": json.password,
-          "assetID": "AVA",
+          "assetID": "AVAX",
           "amount": 1000,
           "to": wallet
         },
