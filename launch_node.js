@@ -167,7 +167,8 @@ async function checkBalancePchain() {
 
     console.log('Balance is still 0, waiting 5 sec')
     await new Promise(resolve => setTimeout(resolve, 5000));
-    checkBalancePchain()
+    // checkBalancePchain()
+    validation()
   } else {
     console.log("Your balance on P-Chain is : ", balancePChain.body)
     validation()
