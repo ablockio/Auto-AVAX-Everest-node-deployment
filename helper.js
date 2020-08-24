@@ -378,7 +378,7 @@ module.exports.unsignedNodeTxEndTime100Year = async function(node, pchain) {
 
 }
 
-module.exports.unsignedNodeTx = async function(node, pchain) {
+module.exports.addDefaultSubnetValidator = async function(node, pchain) {
 
   return new Promise((resolve, reject) => {
     var headersOpt = {

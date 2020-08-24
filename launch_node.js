@@ -182,10 +182,10 @@ async function validation() {
 
   d.node = node.body;
   console.log('Node Id:', d.node.result.nodeID)
-  console.log('##  Creating unsigned transaction...')
-  // 
-  // let unsigned = await helper.unsignedNodeTx(d.node.result.nodeID, d.pWalletResponse.result.address)
-  // console.log('##  Signing unsigned transaction...')
+  console.log('##  addDefaultSubnetValidator...')
+  //
+  let unsigned = await helper.addDefaultSubnetValidator(d.node.result.nodeID, d.pWalletResponse.result.address)
+
   // let signed = await helper.signTxPChain(unsigned.body.result.unsignedTx, d.pWalletResponse.result.address)
   // console.log('##  Issuing Transaction to P-Chain...')
   // let issuePchain = await helper.issueTxPChainAdmin(signed.body.result.tx)
