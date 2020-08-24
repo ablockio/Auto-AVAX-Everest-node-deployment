@@ -26,6 +26,10 @@ fi
 echo '### Updating packages...'
 sudo apt-get update -y
 
+echo '### Installing nodejs...'
+sudo apt-get -y install nodejs
+sudo apt-get -y install npm
+
 echo '### Cloning gecko directory...'
 cd $HOME
 wget https://github.com/ava-labs/gecko/releases/download/v$_VERSION/avalanche-linux-$_VERSION.tar.gz
