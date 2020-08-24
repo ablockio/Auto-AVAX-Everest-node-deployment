@@ -3,7 +3,7 @@
 #######################################
 # Bash script to install dependencies in UBUNTU
 # for https://www.avalabs.org/ Nodes
-#######################################
+# ######################################
 
 _VERSION=0.6.2
 
