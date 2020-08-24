@@ -122,7 +122,7 @@ module.exports.checkWalletBalanceXChain = async function(wallet) {
         json: true,
       },
       (error, response, body) => {
-        console.log('error, response, body', error, response, body)
+        // console.log('error, response, body', error, response, body)
         resolve(response)
       })
   })
