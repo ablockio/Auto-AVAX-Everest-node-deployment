@@ -5,7 +5,6 @@
 # for https://www.avalabs.org/ Nodes
 #######################################
 
-AVA_VERSION=$1
 _VERSION=$1
 
 echo '    /\ \    / /\    \ \ / / |  ____\ \    / /  ____|  __ \|  ____|/ ____|__   __|'
@@ -16,7 +15,7 @@ echo '/_/    \_\/_/    \_\/_/ \_\ |______|   \/   |______|_|  \_\'$_VERSION'_|__
 echo 'If you want to help us, contact us on contact@ablock.io'
 
 
-echo '### Starting update of AVAX Node to '$AVA_VERSION'...'
+echo '### Starting update of AVAX Node to '$_VERSION'...'
 
 echo '### Stopping existing AVAX node if launched manually ...'
 if [  -f "/etc/systemd/system/avaxnode.service" ]; then
@@ -43,9 +42,10 @@ else
 echo 'systemd is not available on this machine, will use supervisord instead'
 fi
 
-if [ -n "$NOHUP_USED" ]; then
-  echo '### Creating AVA node service...'
+
+  echo '### Creating AVAX node service...'
   if [ -n "$SYSTEMD_SUPPORTED" ]; then
+  sudo rm -f /etc/systemd/system/avaxnode.service
   sudo USER=$USER bash -c 'cat <<EOF > /etc/systemd/system/avaxnode.service
   [Unit]
   Description=AVAX Everest Node service
@@ -70,6 +70,7 @@ if [ -n "$NOHUP_USED" ]; then
   EOF'
   sudo systemctl daemon-reload
   else
+  sudo rm -f /etc/supervisor/conf.d/avaxnode.conf
   sudo bash -c 'cat <<EOF > /etc/supervisor/conf.d/avaxnode.conf
   [program:avaxnode]
   directory=/home/$SUDO_USER/avalanche-'$_VERSION'
@@ -88,7 +89,6 @@ if [ -n "$NOHUP_USED" ]; then
   stderr_logfile_backups=1
   EOF'
   fi
-fi
 
 
 echo '### Downloading latest version...'
