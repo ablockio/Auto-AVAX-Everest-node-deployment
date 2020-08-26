@@ -4,19 +4,21 @@
 # Bash script to install dependencies in UBUNTU
 # for https://www.avalabs.org/ Nodes
 #######################################
-echo '   _________   _________              ________  ___________ _______      _____  .____    .___ '
-echo '  /  _  \   \ /   /  _  \             \______ \ \_   _____/ \      \    /  _  \ |    |   |   |'
-echo ' /  /_\  \   Y   /  /_\  \    ______   |    |  \ |    __)_  /   |   \  /  /_\  \|    |   |   |'
-echo '/    |    \     /    |    \  /_____/   |    `   \|        \/    |    \/    |    \    |___|   |'
-echo '\____|__  /\___/\____|__  /           /_______  /_______  /\____|__  /\____|__  /_______ \___|'
-echo '        \/              \/ script powered by  \/ ablock \/         \/         \/        \/   '
-echo 'If you want to help us, contact us on contact@ablock.io'
 
 AVA_VERSION=$1
 _VERSION=$1
+
+echo '    /\ \    / /\    \ \ / / |  ____\ \    / /  ____|  __ \|  ____|/ ____|__   __|'
+echo '   /  \ \  / /  \    \ V /  | |__   \ \  / /| |__  | |__) | |__  | (___    | |   '
+echo '  / /\ \ \/ / /\ \    > <   |  __|   \ \/ / |  __| |  _  /|  __|  \___ \   | |   '
+echo ' / ____ \  / ____ \  / . \  | |____   \  /  | |____| | \ \| |____ ____) |  | |   '
+echo '/_/    \_\/_/    \_\/_/ \_\ |______|   \/   |______|_|  \_\'$_VERSION'_|_____/   |_|   '
+echo 'If you want to help us, contact us on contact@ablock.io'
+
+
 echo '### Starting update of AVAX Node to '$AVA_VERSION'...'
 
-echo '### Stopping existing AVA node if launched manually ...'
+echo '### Stopping existing AVAX node if launched manually ...'
 if [  -f "/etc/systemd/system/avaxnode.service" ]; then
 SYSTEMD_INSTALLED=1
 echo '### systemd is used'
@@ -66,6 +68,7 @@ if [ -n "$NOHUP_USED" ]; then
   [Install]
   WantedBy=multi-user.target
   EOF'
+  sudo systemctl daemon-reload
   else
   sudo bash -c 'cat <<EOF > /etc/supervisor/conf.d/avaxnode.conf
   [program:avaxnode]
