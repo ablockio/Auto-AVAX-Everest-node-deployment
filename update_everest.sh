@@ -92,7 +92,7 @@ echo '### Downloading latest version...'
 
 cd $HOME
 wget https://github.com/ava-labs/gecko/releases/download/v$_VERSION/avalanche-linux-$_VERSION.tar
-tar -xvf avalanche-linux-$_VERSION.tar.gz
+tar -xvf avalanche-linux-$_VERSION.tar
 
 cd avalanche-$_VERSION
 
