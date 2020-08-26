@@ -13,6 +13,7 @@ echo '        \/              \/ script powered by  \/ ablock \/         \/     
 echo 'If you want to help us, contact us on contact@ablock.io'
 
 AVA_VERSION=$1
+_VERSION=$1
 echo '### Starting update of AVAX Node to '$AVA_VERSION'...'
 
 echo '### Stopping existing AVA node if launched manually ...'
