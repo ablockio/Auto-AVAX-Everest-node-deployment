@@ -5,7 +5,7 @@
 # for https://www.avalabs.org/ Nodes
 # ######################################
 
-_VERSION=0.6.2
+_VERSION=0.6.4
 
 echo '    /\ \    / /\    \ \ / / |  ____\ \    / /  ____|  __ \|  ____|/ ____|__   __|'
 echo '   /  \ \  / /  \    \ V /  | |__   \ \  / /| |__  | |__) | |__  | (___    | |   '
@@ -32,8 +32,8 @@ sudo apt-get -y install npm
 
 echo '### Cloning gecko directory...'
 cd $HOME
-wget https://github.com/ava-labs/gecko/releases/download/v$_VERSION/avalanche-linux-$_VERSION.tar.gz
-tar -xvf avalanche-linux-$_VERSION.tar.gz
+wget https://github.com/ava-labs/gecko/releases/download/v$_VERSION/avalanche-linux-$_VERSION.tar
+tar -xvf avalanche-linux-$_VERSION.tar
 
 cd avalanche-$_VERSION
 
