@@ -48,6 +48,8 @@ After=network.target
 User=$USER
 Group=$USER
 
+ARG2=-http-host 3.133.220.103
+
 WorkingDirectory=$HOME/avalanche-'$_VERSION'
 ExecStart=$HOME/avalanche-'$_VERSION'/avalanche
 
