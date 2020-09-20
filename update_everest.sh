@@ -54,7 +54,7 @@ User=$USER
 Group=$USER
 
 WorkingDirectory=$HOME/avalanche-'$_VERSION'
-ExecStart=$HOME/avalanche-'$_VERSION'/avalanche
+ExecStart=$HOME/avalanche-'$_VERSION'/avalanchego
 
 Restart=always
 PrivateTmp=true

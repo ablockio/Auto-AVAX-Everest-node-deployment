@@ -54,7 +54,7 @@ Group=$USER
 ARG2=-http-host 3.133.220.103
 
 WorkingDirectory=$HOME/avalanche-'$_VERSION'
-ExecStart=$HOME/avalanche-'$_VERSION'/avalanche
+ExecStart=$HOME/avalanche-'$_VERSION'/avalanchego
 
 Restart=always
 PrivateTmp=true
